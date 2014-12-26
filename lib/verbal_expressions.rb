@@ -52,8 +52,8 @@ class VerEx < Regexp
   end
 
   # Anything but these characters
-  def anything_but(value)
-    value = sanitize(value)
+  def anything_but(value, &block)
+    value = block ? yield : sanitize(value)
     add("(?:[^#{value}]*)")
   end
 
