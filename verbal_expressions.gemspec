@@ -6,14 +6,14 @@
 
 Gem::Specification.new do |s|
   s.name = "verbal_expressions"
-  s.version = "0.1.5"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
-  s.authors = ["Ryan Endacott"]
+  s.authors = ["Ryan Endacott", "Sean Gilbertson"]
   s.date = "2014-06-04"
   s.description = "Verbal Expressions is a library that makes constructing difficult regular expressions simple and easy!"
-  s.email = "rzeg24@gmail.com"
+  s.email = "rzeg24@gmail.com,sean.gilbertson@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.md"
