@@ -110,7 +110,7 @@ class VerEx < Regexp
 
   # Any whitespace character
   def whitespace()
-    clause = '\s' + (@flag == :maybe) ? '' : '+'
+    clause = '\s' + ((@flag == :maybe) ? '' : '+')
     add(clause)
   end
 
