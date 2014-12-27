@@ -41,9 +41,14 @@ class VerEx < Regexp
   end
 
   # Maybe is used to add values with ?
-  def maybe(value=nil, &block)
-    value = (block ? yield : sanitize(value))
-    add("(?:#{value})?")
+  def maybe(value=nil)
+    add '(?:'
+    if block_given?
+      yield
+    else
+      add sanitize(value)
+    end
+    add ')?'
   end
 
   # Any character any number of times
@@ -53,8 +58,13 @@ class VerEx < Regexp
 
   # Anything but these characters
   def anything_but(value=nil, &block)
-    value = (block ? yield : sanitize(value))
-    add("(?:[^#{value}]*)")
+    add '(?:[^'
+    if block_given?
+      yield
+    else
+      add(sanitize(value))
+    end
+    add ']*)'
   end
 
   # Regular expression special chars
