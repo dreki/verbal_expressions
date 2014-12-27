@@ -42,7 +42,7 @@ class VerEx < Regexp
 
   # Maybe is used to add values with ?
   def maybe(value=nil, &block)
-    value = block ? yield : sanitize(value)
+    value = (block ? yield : sanitize(value))
     add("(?:#{value})?")
   end
 
@@ -53,7 +53,7 @@ class VerEx < Regexp
 
   # Anything but these characters
   def anything_but(value=nil, &block)
-    value = block ? yield : sanitize(value)
+    value = (block ? yield : sanitize(value))
     add("(?:[^#{value}]*)")
   end
 
@@ -167,23 +167,23 @@ class VerEx < Regexp
 
   private
 
-    # Sanitation function for adding
-    # anything safely to the expression
-    def sanitize(value)
-      case value
+  # Sanitation function for adding
+  # anything safely to the expression
+  def sanitize(value)
+    case value
       when Regexp, VerEx
         value.source
       else
         Regexp.quote(value)
-      end
     end
+  end
 
-    # Function to add stuff to the
-    # expression. Also compiles the
-    # new expression so it's ready to
-    # be used.
-    def add(value = '')
-      @source += value
-    end
+  # Function to add stuff to the
+  # expression. Also compiles the
+  # new expression so it's ready to
+  # be used.
+  def add(value = '')
+    @source += value
+  end
 
 end
