@@ -41,8 +41,8 @@ class VerEx < Regexp
   end
 
   # Maybe is used to add values with ?
-  def maybe(value)
-    value = sanitize(value)
+  def maybe(value, &block)
+    value = block ? yield : sanitize(value)
     add("(?:#{value})?")
   end
 
