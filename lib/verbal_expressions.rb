@@ -65,13 +65,13 @@ class VerEx < Regexp
 
   # Anything but these characters
   def anything_but(value=nil, &block)
-    add '(?:[^'
+    add '(?:(?!'
     if block_given?
       yield
     else
       add(sanitize(value))
     end
-    add ']*)'
+    add ')*)'
   end
 
   # Regular expression special chars
