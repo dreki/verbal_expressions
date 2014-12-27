@@ -139,7 +139,7 @@ class VerEx < Regexp
 
   # Adds alternative expressions
   # TODO: or is a reserved keyword in ruby, think of better name
-  def alternatively(value = nil)
+  def or_instead(value = nil)
     @prefixes += "(?:" unless @prefixes.include?("(")
     @suffixes = ")" + @suffixes unless @suffixes.include?(")")
     add(")|(?:")

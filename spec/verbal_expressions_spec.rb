@@ -98,7 +98,7 @@ describe VerEx do
       let(:matcher) do
         VerEx.new do
           find 'http://'
-          alternatively
+          or_instead
           find 'ftp://'
         end
       end
