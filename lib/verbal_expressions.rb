@@ -19,6 +19,13 @@ class VerEx < Regexp
     @self_before_instance_eval.send method, *args, &block
   end
 
+  @flag = nil
+  def flag(f)
+    @flag = f
+    yield
+    @flag = nil
+  end
+
   # We try to keep the syntax as
   # user-friendly as possible.
   # So we can use the "normal"
@@ -44,7 +51,7 @@ class VerEx < Regexp
   def maybe(value=nil)
     add '(?:'
     if block_given?
-      yield
+      flag(:maybe) { yield }
     else
       add sanitize(value)
     end
@@ -103,7 +110,8 @@ class VerEx < Regexp
 
   # Any whitespace character
   def whitespace()
-    add('\s+')
+    clause = '\s' + (@flag == :maybe) ? '' : '+'
+    add(clause)
   end
 
   # Any given character
